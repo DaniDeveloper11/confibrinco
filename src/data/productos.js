@@ -13,7 +13,7 @@ export const productos = [
     nombre: 'Gomitas',
     subtitulo: 'Moldeadas con tu logo',
     descripcion: 'Texturas suaves y sabores frutales intensos, moldeadas en formas personalizadas con tu logotipo.',
-    emoji: '🐻',
+    emoji: '🍬',
     color: 'from-red-400 to-pink-500',
     image:'public/caramelo_tu_logo.png',
   },
@@ -29,10 +29,10 @@ export const productos = [
   },
   {
     id: 4,
-    nombre: 'Obleas',
+    nombre: 'Caramelo picosito',
     subtitulo: 'Tradición mexicana',
-    descripcion: 'Tradición mexicana elevada: obleas impresas con tinta vegetal comestible 100% segura.',
-    emoji: '🥞',
+    descripcion: 'Caramelo Tamarido con toque enchilosito.',
+    emoji: 'p',
     color: 'from-yellow-400 to-amber-500',
     image:'public/caramelo.png',
 

@@ -13,7 +13,7 @@ const links = [
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 bg-white/96 md:bg-dark/95 backdrop-blur border-b border-brand/15 md:border-white/5 shadow-sm md:shadow-none">
+  <header class="sticky top-0 z-50 bg-white/96  backdrop-blur border-b border-brand/15 md:border-white/5 shadow-sm md:shadow-none">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 md:px-6 md:py-4">
 
       <!-- Logo -->
