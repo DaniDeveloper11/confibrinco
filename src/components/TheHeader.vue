@@ -31,7 +31,7 @@ const links = [
           v-for="l in links"
           :key="l.label"
           :href="l.href"
-          class="text-sm text-white/60 transition hover:text-white"
+          class="text-sm text-brand-dark transition hover:text-white"
         >
           {{ l.label }}
         </a>

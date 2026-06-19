@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import LogoPreview from '@/components/LogoPreview.vue'
 import { productos } from '@/data/productos'
 
-const WEBHOOK_URL = 'https://n8n-production-9b40.up.railway.app/webhook-test/contacto'
+const WEBHOOK_URL = import.meta.env.VITE_WEBHOOK_URL
 
 // ── Proceso ──────────────────────────────────────────────────────────────
 const pasos = [
@@ -106,6 +106,7 @@ const testimonios = [
 const form = ref({
   nombre:   '',
   email:    '',
+  telefono: '',
   empresa:  '',
   producto: '',
   mensaje:  '',
@@ -118,12 +119,14 @@ function validar() {
   const nombre = form.value.nombre.trim()
   const empresa = form.value.empresa.trim()
   const email = form.value.email.trim()
+  const telefono = form.value.telefono.trim()
   const producto = form.value.producto
   const mensaje = form.value.mensaje.trim()
 
   if (nombre.length < 2) errores.push('Ingresa tu nombre completo (mínimo 2 caracteres).')
   if (empresa.length < 2) errores.push('Ingresa el nombre de tu empresa.')
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errores.push('Ingresa un correo electrónico válido.')
+  if (!/^[\d\s+()-]{10,}$/.test(telefono)) errores.push('Ingresa un número de teléfono válido (mínimo 10 dígitos).')
   if (!producto) errores.push('Selecciona el producto que te interesa.')
   if (mensaje.length < 10) errores.push('Cuéntanos un poco más de tu proyecto (mínimo 10 caracteres).')
 
@@ -154,7 +157,7 @@ async function enviar(e) {
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
 
     enviado.value = true
-    form.value = { nombre: '', email: '', empresa: '', producto: '', mensaje: '' }
+    form.value = { nombre: '', email: '', telefono: '', empresa: '', producto: '', mensaje: '' }
     await Swal.fire({
       icon: 'success',
       title: '¡Solicitud enviada!',
@@ -611,16 +614,7 @@ async function enviar(e) {
         <!-- Formulario -->
         <div class="rounded-2xl bg-brand-soft p-6 ring-1 ring-black/5 sm:rounded-3xl sm:p-8">
 
-          <!-- Éxito -->
-          <div v-if="enviado" class="flex flex-col items-center justify-center gap-4 py-12 text-center">
-            <div class="text-5xl">🍬</div>
-            <h3 class="text-xl font-bold text-ink">¡Recibido!</h3>
-            <p class="text-muted text-sm max-w-xs">
-              Te contactamos en menos de 24 horas con tu propuesta personalizada.
-            </p>
-          </div>
-
-          <form v-else @submit="enviar" novalidate class="flex flex-col gap-4 sm:gap-5">
+          <form @submit="enviar" novaldate class="flex flex-col gap-4 sm:gap-5">
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-5">
               <div>
                 <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">Nombre completo</label>
@@ -644,17 +638,30 @@ async function enviar(e) {
               </div>
             </div>
 
-            <div>
-              <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">Correo corporativo</label>
-              <input
-                v-model="form.email"
-                type="email"
-                required
-                placeholder="juan@restaurante.com"
-                class="w-full rounded-xl bg-white px-4 py-3.5 text-sm text-ink placeholder-muted/60 ring-1 ring-black/10 focus:outline-none focus:ring-brand"
-              />
+            <div class="grid gap-4 sm:grid-cols-2 sm:gap-5">
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">Correo corporativo</label>
+                <input
+                  v-model="form.email"
+                  type="email"
+                  required
+                  placeholder="juan@restaurante.com"
+                  class="w-full rounded-xl bg-white px-4 py-3.5 text-sm text-ink placeholder-muted/60 ring-1 ring-black/10 focus:outline-none focus:ring-brand"
+                />
+              </div>
+              <div>
+                <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">Teléfono</label>
+                <input
+                  v-model="form.telefono"
+                  type="tel"
+                  required
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="Numero de telefono"
+                  class="w-full rounded-xl bg-white px-4 py-3.5 text-sm text-ink placeholder-muted/60 ring-1 ring-black/10 focus:outline-none focus:ring-brand"
+                />
+              </div>
             </div>
-
             <div>
               <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">¿Qué producto te interesa?</label>
               <select
