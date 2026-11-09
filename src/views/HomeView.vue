@@ -2,12 +2,20 @@
 // Prefijo de rutas para que los assets de /public funcionen bajo GitHub Pages
 const base = import.meta.env.BASE_URL
 
-import { ref } from 'vue'
-import Swal from 'sweetalert2'
+// import { ref } from 'vue'
+// import Swal from 'sweetalert2'
 import LogoPreview from '@/components/LogoPreview.vue'
 import { productos } from '@/data/productos'
 
-const WEBHOOK_URL = import.meta.env.VITE_WEBHOOK_URL
+// const WEBHOOK_URL = import.meta.env.VITE_WEBHOOK_URL
+
+// ── Contacto (llamada / WhatsApp) ─────────────────────────────────────────
+const TELEFONO         = '523335812857'      // formato internacional, sin "+" ni espacios
+const TELEFONO_VISIBLE = '+52 33 3581 2857'
+const WHATSAPP_MENSAJE = 'Hola, me interesa cotizar dulces personalizados con mi logo.'
+
+const telUrl      = `tel:+${TELEFONO}`
+const whatsappUrl = `https://wa.me/${TELEFONO}?text=${encodeURIComponent(WHATSAPP_MENSAJE)}`
 
 // ── Proceso ──────────────────────────────────────────────────────────────
 const pasos = [
@@ -105,7 +113,8 @@ const testimonios = [
   },
 ]
 
-// ── Formulario ────────────────────────────────────────────────────────────
+// ── Formulario (envío por correo desactivado de momento) ──────────────────
+/*
 const form = ref({
   nombre:   '',
   email:    '',
@@ -178,6 +187,7 @@ async function enviar(e) {
     enviando.value = false
   }
 }
+*/
 </script>
 
 <template>
@@ -585,9 +595,10 @@ async function enviar(e) {
               </span>
               <div>
                 <p class="font-medium text-ink">Ventas & WhatsApp</p>
-                <p>+52 33 1234 5678</p>
+                <a :href="telUrl" class="hover:text-brand">{{ TELEFONO_VISIBLE }}</a>
               </div>
             </li>
+            <!-- Correo desactivado de momento
             <li class="flex items-center gap-3 text-muted">
               <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -599,6 +610,7 @@ async function enviar(e) {
                 <p>ventas@confibrinco.mx</p>
               </div>
             </li>
+            -->
             <li class="flex items-center gap-3 text-muted">
               <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -614,9 +626,44 @@ async function enviar(e) {
           </ul>
         </div>
 
-        <!-- Formulario -->
+        <!-- CTA: llamada / WhatsApp -->
         <div class="rounded-2xl bg-brand-soft p-6 ring-1 ring-black/5 sm:rounded-3xl sm:p-8">
+          <h3 class="text-lg font-bold text-ink sm:text-xl">Cotiza tu pedido</h3>
+          <p class="mt-2 text-sm text-muted leading-relaxed">
+            Escríbenos por WhatsApp o llámanos y te asesoramos con cantidades,
+            sabores y diseño de tu logo.
+          </p>
 
+          <div class="mt-6 flex flex-col gap-3 sm:gap-4">
+            <a
+              :href="whatsappUrl"
+              target="_blank"
+              rel="noopener"
+              class="flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] py-4 text-sm font-bold text-white transition active:scale-95 shadow-lg shadow-[#25D366]/20 hover:brightness-95"
+            >
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Escríbenos por WhatsApp
+            </a>
+
+            <a
+              :href="telUrl"
+              class="flex w-full items-center justify-center gap-2 rounded-xl py-4 text-sm font-bold text-white transition active:scale-95 shadow-lg shadow-brand/20"
+              style="background: linear-gradient(135deg, #F29F05, #D93D04)"
+            >
+              <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+              </svg>
+              Llamar al {{ TELEFONO_VISIBLE }}
+            </a>
+          </div>
+
+          <p class="mt-5 text-center text-xs text-muted">
+            Te respondemos en menos de 24 h · Sin compromiso
+          </p>
+
+          <!-- Formulario con envío por correo — desactivado de momento
           <form @submit="enviar" novaldate class="flex flex-col gap-4 sm:gap-5">
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-5">
               <div>
@@ -703,6 +750,7 @@ async function enviar(e) {
               Te respondemos en menos de 24 h · Sin compromiso
             </p>
           </form>
+          -->
         </div>
 
       </div>
