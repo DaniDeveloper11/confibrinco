@@ -1,4 +1,7 @@
 <script setup>
+// Prefijo de rutas para que los assets de /public funcionen bajo GitHub Pages
+const base = import.meta.env.BASE_URL
+
 const year = new Date().getFullYear()
 
 const nav = [
@@ -17,9 +20,9 @@ const nav = [
 
         <!-- Brand col -->
         <div class="lg:col-span-2">
-          <a href="/" class="inline-flex items-center mb-5">
+          <a :href="base + ''" class="inline-flex items-center mb-5">
             <img
-              src="/logo_confibrinco.png"
+              :src="base + 'logo_confibrinco.png'"
               alt="Confibrinco"
               class="h-12 w-auto drop-shadow-md"
             />

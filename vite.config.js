@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Dominio propio (confibrinco.com) → el sitio vive en la raíz
+  base: '/',
   plugins: [
     vue(),
     tailwindcss(),

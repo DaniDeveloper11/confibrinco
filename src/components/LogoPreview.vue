@@ -1,4 +1,7 @@
 <script setup>
+// Prefijo de rutas para que los assets de /public funcionen bajo GitHub Pages
+const base = import.meta.env.BASE_URL
+
 import { ref, computed } from 'vue'
 
 const logoSrc  = ref(null)
@@ -80,7 +83,7 @@ const logoStyle = computed(() => ({ width: `${size.value}%` }))
         <div class="grid place-items-center rounded-3xl bg-white p-8 shadow-lg ring-1 ring-brand/10">
           <div class="relative w-full max-w-sm">
             <!-- Imagen base del caramelo -->
-            <img src="/caramelo_base.png" alt="Empaque base" class="w-full" />
+            <img :src="base + 'caramelo_base.png'" alt="Empaque base" class="w-full" />
 
             <!-- Logo superpuesto centrado -->
             <div class="absolute inset-0 flex items-center justify-center">

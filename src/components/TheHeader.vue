@@ -1,4 +1,7 @@
 <script setup>
+// Prefijo de rutas para que los assets de /public funcionen bajo GitHub Pages
+const base = import.meta.env.BASE_URL
+
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
@@ -19,7 +22,7 @@ const links = [
       <!-- Logo -->
       <RouterLink to="/" class="flex items-center shrink-0">
         <img
-          src="/logo_confibrinco.png"
+          :src="base + 'logo_confibrinco.png'"
           alt="Confibrinco"
           class="h-11 w-auto md:h-10 drop-shadow-sm"
         />
@@ -39,7 +42,7 @@ const links = [
 
       <!-- CTA desktop -->
       <a
-        href="/#contacto"
+        :href="base + '#contacto'"
         class="hidden md:inline-flex items-center gap-2 rounded-xl bg-brand px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark"
       >
         Solicitar cotización
@@ -83,7 +86,7 @@ const links = [
             </svg>
           </a>
           <a
-            href="/#contacto"
+            :href="base + '#contacto'"
             class="mt-3 rounded-2xl bg-ink px-5 py-4 text-center text-[15px] font-bold text-white shadow-lg active:opacity-80"
             @click="open = false"
           >

@@ -1,4 +1,7 @@
 <script setup>
+// Prefijo de rutas para que los assets de /public funcionen bajo GitHub Pages
+const base = import.meta.env.BASE_URL
+
 import { ref } from 'vue'
 import Swal from 'sweetalert2'
 import LogoPreview from '@/components/LogoPreview.vue'
@@ -184,7 +187,7 @@ async function enviar(e) {
 
     <!-- Imagen decorativa esquina superior izquierda -->
     <img
-      src="/elemento.png"
+      :src="base + 'elemento.png'"
       alt=""
       aria-hidden="true"
       class="pointer-events-none select-none absolute top-0 -right-3 w-48 opacity-80 sm:w-64 sm:top-0 sm:-right-4 lg:w-80"
@@ -218,13 +221,13 @@ async function enviar(e) {
 
           <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <a
-              href="/#contacto"
+              :href="base + '#contacto'"
               class="rounded-2xl bg-brand px-7 py-4 text-center text-sm font-bold text-white transition hover:bg-brand-dark shadow-lg shadow-brand/30 active:scale-95"
             >
               Solicitar cotización
             </a>
             <a
-              href="/#catalogo"
+              :href="base + '#catalogo'"
               class="rounded-2xl border border-brand/30 px-7 py-4 text-center text-sm font-semibold text-ink transition hover:bg-brand/10 active:scale-95"
             >
               Ver catálogo →
@@ -291,7 +294,7 @@ async function enviar(e) {
 
     <!-- Imagen decorativa esquina superior derecha -->
     <img
-      src="/elemento.png"
+      :src="base + 'elemento.png'"
       alt=""
       aria-hidden="true"
       class="pointer-events-none select-none absolute top-3 -right-2 w-16 sm:w-32 sm:top-10 sm:right-5 lg:w-44 opacity-80"
@@ -336,7 +339,7 @@ async function enviar(e) {
             <p class="mt-1 text-[10px] font-medium text-brand uppercase tracking-wider sm:text-xs">{{ p.subtitulo }}</p>
             <p class="mt-2 text-xs text-muted leading-relaxed hidden sm:block">{{ p.descripcion }}</p>
             <a
-              href="/#contacto"
+              :href="base + '#contacto'"
               class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand hover:underline sm:mt-5 sm:text-sm"
             >
               Ver detalles →
@@ -358,7 +361,7 @@ async function enviar(e) {
 
     <!-- Imagen decorativa esquina inferior izquierda -->
     <img
-      src="/elemento.png"
+      :src="base + 'elemento.png'"
       alt=""
       aria-hidden="true"
       class="pointer-events-none select-none absolute -bottom-8 -left-8 w-32 opacity-80 sm:w-44 sm:-bottom-10 sm:-left-10 lg:w-56"
@@ -414,7 +417,7 @@ async function enviar(e) {
 
     <!-- Imagen decorativa esquina superior derecha -->
     <img
-      src="/elemento.png"
+      :src="base + 'elemento.png'"
       alt=""
       aria-hidden="true"
       class="pointer-events-none select-none absolute -top-12 -right-12 w-40 opacity-80 sm:w-56 sm:-top-16 sm:-right-16 lg:w-72"
@@ -456,7 +459,7 @@ async function enviar(e) {
           </div>
 
           <a
-            href="/#contacto"
+            :href="base + '#contacto'"
             class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline sm:mt-6"
           >
             Ver soluciones →
@@ -473,7 +476,7 @@ async function enviar(e) {
 
     <!-- Imagen decorativa esquina superior izquierda -->
     <img
-      src="/elemento.png"
+      :src="base + 'elemento.png'"
       alt=""
       aria-hidden="true"
       class="pointer-events-none select-none absolute -top-6 -left-6 w-24 opacity-80 sm:w-32 sm:-top-8 sm:-left-8 lg:w-40"
@@ -495,7 +498,7 @@ async function enviar(e) {
 
     <!-- Imagen decorativa esquina inferior derecha -->
     <img
-      src="/elemento.png"
+      :src="base + 'elemento.png'"
       alt=""
       aria-hidden="true"
       class="pointer-events-none select-none absolute -bottom-10 -right-10 w-36 opacity-80 sm:w-52 sm:-bottom-14 sm:-right-14 lg:w-64"
@@ -552,7 +555,7 @@ async function enviar(e) {
 
     <!-- Imagen decorativa esquina inferior izquierda -->
     <img
-      src="/elemento.png"
+      :src="base + 'elemento.png'"
       alt=""
       aria-hidden="true"
       class="pointer-events-none select-none absolute -bottom-12 -left-12 w-40 opacity-80 sm:w-56 sm:-bottom-16 sm:-left-16 lg:w-72"
