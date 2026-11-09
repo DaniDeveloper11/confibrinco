@@ -32,8 +32,8 @@ const nav = [
             con innovación para crear branding comestible de clase mundial.
           </p>
           <p class="mt-5 text-sm">
-            <span class="text-white font-medium">+52 33 1234 5678</span><br/>
-            ventas@confibrinco.mx<br/>
+            <a href="tel:+523335812857" class="text-white font-medium hover:text-brand">+52 33 3581 2857</a><br/>
+            <!-- ventas@confibrinco.mx<br/> -->
             Etzatlan, Jalisco, México
           </p>
         </div>
